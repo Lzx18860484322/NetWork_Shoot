@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
-using UnityEngine.Networking;
 
 #pragma warning disable CS0618 // 类型或成员已过时
-public class MouseLook : NetworkBehaviour
+public class MouseLook : MonoBehaviour
 #pragma warning restore CS0618 // 类型或成员已过时
 {
     public float XSensitivity = 2f;
@@ -32,15 +31,13 @@ public class MouseLook : NetworkBehaviour
 
         private void Start()
         {
-            character =transform;
+            
+            character =gameObject.transform.parent.gameObject.transform;
             Init(character, gameObject.GetComponentInChildren<Camera>().transform);
         }
 
         private void FixedUpdate()
         {
-        if (!isLocalPlayer) {
-            return;
-        }
             UpdateCursorLock();
             LookRotation(character, transform);
         }

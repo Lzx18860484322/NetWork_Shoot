@@ -1,31 +1,32 @@
 ﻿using UnityEngine;
 using System.Collections;
- 
-public class RayViewer : MonoBehaviour {
- 
-        // Debug.DrawRay绘制的Unity单位
-        public float weaponRange = 50f;                      
- 
-        // FPS相机
-        private Camera fpsCam;                               
- 
- 
-        void Start () 
-        {
 
-        fpsCam=gameObject.transform.parent.GetComponentInChildren<Camera>();
+public class RayViewer : MonoBehaviour
+{
+    // Debug.DrawRay绘制的Unity单位
+    public float weaponRange = 50f;
 
-                // 获取Camera组件
-                //fpsCam = GetComponentInParent<Camera>();
-        }
- 
-         
-        void Update () 
+    // FPS相机
+    private Camera fpsCam;
+
+    void Start()
+    {
+
+        fpsCam = gameObject.transform.parent.GetComponentInChildren<Camera>();
+        // 获取Camera组件
+        //fpsCam = GetComponentInParent<Camera>();
+    }
+
+
+    void Update()
+    {
+        if (fpsCam == null)
         {
-                // 创建相机位置至视口中心点的向量
-                Vector3 lineOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
- 
-                // 在场景视图中绘制lineOrigin到相机前方武器射程处的射线
-                Debug.DrawRay(lineOrigin, fpsCam.transform.forward * weaponRange, Color.green);
+            fpsCam = gameObject.transform.parent.GetComponentInChildren<Camera>();
         }
+        // 创建相机位置至视口中心点的向量
+        Vector3 lineOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0.0f));
+        // 在场景视图中绘制lineOrigin到相机前方武器射程处的射线
+        Debug.DrawRay(lineOrigin, fpsCam.transform.forward * weaponRange, Color.green);
+    }
 }

@@ -19,6 +19,12 @@ public class FirstPersonController : NetworkBehaviour
 
     private float horizontal;  //水平偏移量
 
+    public GameObject playerCamera;
+
+    // private void Awake()
+    // {
+    //     playerCamera.SetActive(true);
+    // }
     public FirstPersonController(Animator anim)
     {
         this.anim = anim;
@@ -34,8 +40,9 @@ public class FirstPersonController : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isLocalPlayer) {
-            return; 
+        if (!isLocalPlayer)
+        {
+            return;
         }
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * move_spend;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * move_spend;
@@ -45,9 +52,22 @@ public class FirstPersonController : NetworkBehaviour
 
     private void FixedUpdate()
     {
-       
 
 
+
+    }
+
+    //
+    //PlayerController Class
+    //
+
+
+
+    public override void OnStartLocalPlayer()
+    {
+
+        // GetComponent<MeshRenderer>().material.color = Color.blue;
+        playerCamera.SetActive(true);       //激活自己的相机
     }
     // void startAn(float x,float y)
     // {
