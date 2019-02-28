@@ -12,8 +12,11 @@ public class RayViewer : MonoBehaviour {
  
         void Start () 
         {
+
+        fpsCam=gameObject.transform.parent.GetComponentInChildren<Camera>();
+
                 // 获取Camera组件
-                fpsCam = GetComponentInParent<Camera>();
+                //fpsCam = GetComponentInParent<Camera>();
         }
  
          

@@ -43,9 +43,9 @@ public class RaycastShoot : MonoBehaviour {
                 gunAudio = GetComponent<AudioSource>();
  
                 // 获取Camera组件
-                fpsCam = GetComponentInParent<Camera>();
- 
-        }
+                fpsCam = fpsCam = gameObject.transform.parent.GetComponentInChildren<Camera>();
+
+    }
          
  
         void Update () 

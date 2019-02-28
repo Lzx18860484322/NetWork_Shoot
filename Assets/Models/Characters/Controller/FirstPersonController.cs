@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class FirstPersonController : MonoBehaviour
+
+public class FirstPersonController : NetworkBehaviour
 {
 
     Animator anim;
@@ -16,6 +18,12 @@ public class FirstPersonController : MonoBehaviour
     private float move; //水平移动速度（左 或 右）
 
     private float horizontal;  //水平偏移量
+
+    public FirstPersonController(Animator anim)
+    {
+        this.anim = anim;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +34,9 @@ public class FirstPersonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isLocalPlayer) {
+            return; 
+        }
         var x = Input.GetAxis("Horizontal") * Time.deltaTime * move_spend;
         var z = Input.GetAxis("Vertical") * Time.deltaTime * move_spend;
         // transform.Rotate(0, x, 0);
@@ -34,7 +45,9 @@ public class FirstPersonController : MonoBehaviour
 
     private void FixedUpdate()
     {
-      
+       
+
+
     }
     // void startAn(float x,float y)
     // {
