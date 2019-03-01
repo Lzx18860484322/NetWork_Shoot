@@ -1,9 +1,9 @@
 using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
-
+using UnityEngine.Networking;
 #pragma warning disable CS0618 // 类型或成员已过时
-public class MouseLook : MonoBehaviour
+public class MouseLook : NetworkBehaviour
 #pragma warning restore CS0618 // 类型或成员已过时
 {
 
@@ -38,6 +38,7 @@ public class MouseLook : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isLocalPlayer) return;
         UpdateCursorLock();
         LookRotation(character, m_Camera.transform);
     }
