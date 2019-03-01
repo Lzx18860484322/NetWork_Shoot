@@ -4,7 +4,7 @@ using UnityEngine.Networking;
 
 public class RaycastShoot : NetworkBehaviour
 {
-
+    [SerializeField]
     // 设置枪击带来的伤害值
     public int gunDamage = 1;
 
@@ -119,13 +119,15 @@ public class RaycastShoot : NetworkBehaviour
     [Command]
     void CmdFire()
     {
-        var bullet = Instantiate(bulletPrefab, gunEnd.position, gunEnd.rotation);
+        // var bullet = Instantiate(bulletPrefab, gunEnd.position, gunEnd.rotation);
 
-        bullet.GetComponent<Rigidbody>().velocity = fpsCam.transform.forward * bulletSpend;
+        // bullet.GetComponent<Rigidbody>().velocity = fpsCam.transform.forward * bulletSpend;
 
-        NetworkServer.Spawn(bullet);
+        GameObject bullets = Instantiate(bulletPrefab, gunEnd.position, gunEnd.rotation) as GameObject;
 
-        Destroy(bullet, 2.0f);
+        bullets.GetComponent<Rigidbody>().velocity = bullets.transform.forward * 30f;
+        // Destroy(bullets, 2.0f);
+        NetworkServer.Spawn(bullets);
     }
 
 

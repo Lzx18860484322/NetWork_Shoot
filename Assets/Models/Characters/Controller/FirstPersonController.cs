@@ -63,12 +63,16 @@ public class FirstPersonController : NetworkBehaviour
 
 
 
+
+    /// <summary>
+    /// 这个方法只会在本地角色那里调用，当角色被创建的时候就被调用
+    /// </summary>
     public override void OnStartLocalPlayer()
     {
-
-        // GetComponent<MeshRenderer>().material.color = Color.blue;
         playerCamera.SetActive(true);       //激活自己的相机
+        transform.GetComponent<MeshRenderer>().material.color = Color.blue;
     }
+
     // void startAn(float x,float y)
     // {
     //     anim.SetFloat("a", true));
